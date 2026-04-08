@@ -98,7 +98,7 @@ namespace sibr
         }
 
         m_openxrHmd = std::make_unique<OpenXRHMD>("Gaussian splatting");
-        initial_sacle = scale;
+        
         m_openxrHmd->setInitialPose(ipos, iq, scale);
         if (!m_openxrHmd->init()) {
             SIBR_ERR << "Failed to connect to OpenXR" << std::endl;
