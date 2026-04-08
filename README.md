@@ -76,6 +76,8 @@ You'll need the following:
    
    - Set **“Where to build the binaries”** to `<repo_root>/build`.
      ![cmake-1](./docs/img/cmake-1.png)
+
+   - **Fix Compatibility:** Click **Add Entry**, set Name to `CMAKE_POLICY_VERSION_MINIMUM`, Type to `STRING`, and Value to `3.5`. (This prevents errors with legacy libraries like `xatlas`).
    
    - Click **Configure**, choose **Visual Studio 2019 Win64**, then click **Generate**.
      ![cmake-2](./docs/img/cmake-2.png)
