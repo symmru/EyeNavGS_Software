@@ -91,6 +91,15 @@ You'll need the following:
 4. **Compile using Visual Studio**:
    
    - Open `build\sibr_projects.sln` in Visual Studio.
+  
+   - **Important - Set OpenXR Language Standard:**
+     Before building, you must manually set the C++ standard for the OpenXR module:
+     1. In the **Solution Explorer**, expand the `core` folder.
+     2. Right-click the **sibr_openxr** project and select **Properties**.
+     3. Navigate to **Configuration Properties > General**.
+     4. Change **C++ Language Standard** to **ISO C++20 Standard (/std:c++20)**.
+     
+     ![sibr_openxr_c++20](./docs/img/sibr_openxr_c++20.PNG)
    
    - Select the `ALL_BUILD` target and build (C++ 20).
    
