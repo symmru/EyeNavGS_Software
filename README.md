@@ -98,6 +98,8 @@ You'll need the following:
      2. Right-click the **sibr_openxr** project and select **Properties**.
      3. Navigate to **Configuration Properties > General**.
      4. Change **C++ Language Standard** to **ISO C++20 Standard (/std:c++20)**.
+  
+     > **Note:** Do not change the C++ standard for the rest of the parts. The rest of the core libraries must remain at their default (C++14) to ensure compatibility.
      
      ![sibr_openxr_c++20](./docs/img/sibr_openxr_c++20.PNG)
    
