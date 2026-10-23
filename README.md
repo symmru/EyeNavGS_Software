@@ -2,7 +2,7 @@
 
 Zihao Ding¹, Cheng‑Tse Lee², Mufeng Zhu¹, Tao Guan¹, Yuan‑Chun Sun², Cheng‑Hsin Hsu², Yao Liu¹  
 ¹ Rutgers University | ² National Tsing Hua University  
-| [Webpage](https://symmru.github.io/EyeNavGS/) | [Full Paper](https://doi.org/10.48550/arXiv.2506.02380)
+| [Webpage](https://symmru.github.io/EyeNavGS/) | [Published Paper (ACM MM ’25)](https://doi.org/10.1145/3746027.3758265) | [arXiv](https://arxiv.org/abs/2506.02380) |
 
 ---
 
@@ -12,11 +12,18 @@ Abstract: *3D Gaussian Splatting (3DGS) is an emerging media representation that
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>
-@article{ding2025eyenavgs,
-  title={EyeNavGS: A 6-DoF Navigation Dataset and Record-n-Replay Software for Real-World 3DGS Scenes in VR},
-  author={Ding, Zihao and Lee, Cheng-Tse and Zhu, Mufeng and Guan, Tao and Sun, Yuan-Chun and Hsu, Cheng-Hsin and Liu, Yao},
-  journal={arXiv preprint arXiv:2506.02380},
-  year={2025}
+@inproceedings{ding2025eyenavgs,
+  author = {Ding, Zihao and Lee, Cheng-Tse and Zhu, Mufeng and Guan, Tao and Sun, Yuan-Chun and Hsu, Cheng-Hsin and Liu, Yao},
+  title = {{EyeNavGS}: A {6-DoF} Navigation Dataset and Record-n-Replay Software for Real-World {3DGS} Scenes in {VR}},
+  booktitle = {Proceedings of the 33rd ACM International Conference on Multimedia},
+  series = {MM '25},
+  year = {2025},
+  pages = {13126--13132},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  location = {Dublin, Ireland},
+  doi = {10.1145/3746027.3758265},
+  url = {https://doi.org/10.1145/3746027.3758265}
 }
     </code></pre>
   </div>
@@ -252,7 +259,7 @@ EyeNavGS captures **per-frame**, per-eye data:
 
 ## Trace Format
 
-Each CSV row corresponds to one rendered frame (left eye then right eye). Example columns:
+Each CSV row corresponds to one rendered frame (left eye then right eye, one eye’s record for a rendered frame). Example columns:
 
 | ViewIndex | FOV1 (rad) | FOV2 (rad) | FOV3 (rad) | FOV4 (rad) | PosX   | PosY   | PosZ  | QuatX | QuatY | QuatZ | QuatW | GazeQX | GazeQY | GazeQZ | GazeQW | GazePosX | GazePosY | GazePosZ | elapsed_ms | iso_time                      |
 | --------- | ---------- | ---------- | ---------- | ---------- | ------ | ------ | ----- | ----- | ----- | ----- | ----- | ------ | ------ | ------ | ------ | -------- | -------- | -------- | ---------- | ----------------------------- |
@@ -311,15 +318,14 @@ To replay a headset CSV in Desktop Mode (side-by-side), use `--rendering-mode 4 
 
 The trained 3DGS models used in EyeNavGS are available from the following sources:
 
-| Scenes | Download |
-| --- | --- |
-| Bicycle, Bonsai, Counter, Flowers, Garden, Kitchen, Room, Stump, Treehill, Truck, Train, DrJohnson, and Playroom (original 3DGS collection; EyeNavGS uses eight of these scenes) | [Original 3DGS pretrained models (ZIP)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip) |
-| Alameda, Berlin, London, and NYC (Zip-NeRF scenes) | [EyeNavGS trained 3DGS models (Rutgers Box)](https://rutgers.box.com/s/8ogk91lrrl141pclzoxkii3rh3c7x0pv) |
+| Scenes used in EyeNavGS | Source | Download |
+| --- | --- | --- |
+| Bicycle, DrJohnson, Playroom, Room, Stump, Train, Treehill, and Truck | Pretrained models released with [3D Gaussian Splatting for Real-Time Radiance Field Rendering](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) (Kerbl et al., SIGGRAPH 2023) | [Direct download (ZIP)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip) |
+| Alameda, Berlin, London, and NYC | 3DGS models trained by our team on scenes from the Zip-NeRF dataset | [Browse and download (Rutgers Box)](https://rutgers.box.com/s/8ogk91lrrl141pclzoxkii3rh3c7x0pv) |
 
-The Rutgers Box folder provides the trained 3DGS models used for these four scenes, so you can use them directly without retraining.
+The original 3DGS archive also includes scenes not used in EyeNavGS. The Rutgers Box folder contains the trained models used for the four Zip-NeRF scenes. Both sets can be used directly without retraining.
 
 Download and extract the models to a directory of your choice. Set `-m` to the path of the individual scene model.
-
 ### Scene Initialization
 
 For the scene rotation, scale, and initial position used in EyeNavGS, refer to [`scene_setting.csv`](https://github.com/symmru/EyeNavGS_Rutgers_Dataset/blob/main/scene_setting.csv) in the [Rutgers dataset repository](https://github.com/symmru/EyeNavGS_Rutgers_Dataset).
@@ -568,14 +574,21 @@ Tested with an HTC Vive Pro with `beta - SteamVR Beta Update` on Ubuntu distribu
 
 ## 👁️NavGS (EyeNavGS) BibTex
 
-If you use this 👁️NavGS datase in your research, please cite:
+If you use this 👁️EyeNavGS dataset or software in your research, please cite our ACM Multimedia 2025 paper:
 
 ```textile
-@article{ding2025eyenavgs,
-  title={EyeNavGS: A 6-DoF Navigation Dataset and Record-n-Replay Software for Real-World 3DGS Scenes in VR},
-  author={Ding, Zihao and Lee, Cheng-Tse and Zhu, Mufeng and Guan, Tao and Sun, Yuan-Chun and Hsu, Cheng-Hsin and Liu, Yao},
-  journal={arXiv preprint arXiv:2506.02380},
-  year={2025}
+@inproceedings{ding2025eyenavgs,
+  author = {Ding, Zihao and Lee, Cheng-Tse and Zhu, Mufeng and Guan, Tao and Sun, Yuan-Chun and Hsu, Cheng-Hsin and Liu, Yao},
+  title = {{EyeNavGS}: A {6-DoF} Navigation Dataset and Record-n-Replay Software for Real-World {3DGS} Scenes in {VR}},
+  booktitle = {Proceedings of the 33rd ACM International Conference on Multimedia},
+  series = {MM '25},
+  year = {2025},
+  pages = {13126--13132},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  location = {Dublin, Ireland},
+  doi = {10.1145/3746027.3758265},
+  url = {https://doi.org/10.1145/3746027.3758265}
 }
 ```
 
@@ -597,7 +610,7 @@ You may obtain a copy of the Apache License at:
 Unless required by applicable law or agreed to in writing, the software distributed under this license is distributed on an **"AS IS" BASIS**,  
 **WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND**, either express or implied.
 
-Please refer to the `NOTICE` and `LICENSE_EYENAVGS.txt` files for details on which parts are covered under Apache 2.0.
+Please refer to the `NOTICE` and `LICENSE_EYENAVGS.md` files for details on which parts are covered under Apache 2.0.
 
 ---
 
