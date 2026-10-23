@@ -305,35 +305,46 @@ To replay a headset CSV in Desktop Mode (side-by-side), use `--rendering-mode 4 
 
 ---
 
-## Example Scene Initialization Values
+## Scene Models and Initialization
 
-Pretrained 3DGS models can be downloaded from:
+### Download Trained Models
 
-```textile
-https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip
+The trained 3DGS models used in EyeNavGS are available from the following sources:
+
+| Scenes | Download |
+| --- | --- |
+| Bicycle, Bonsai, Counter, Flowers, Garden, Kitchen, Room, Stump, Treehill, Truck, Train, DrJohnson, and Playroom (original 3DGS collection; EyeNavGS uses eight of these scenes) | [Original 3DGS pretrained models (ZIP)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip) |
+| Alameda, Berlin, London, and NYC (Zip-NeRF scenes) | [EyeNavGS trained 3DGS models (Rutgers Box)](https://rutgers.box.com/s/8ogk91lrrl141pclzoxkii3rh3c7x0pv) |
+
+The Rutgers Box folder provides the trained 3DGS models used for these four scenes, so you can use them directly without retraining.
+
+Download and extract the models to a directory of your choice. Set `-m` to the path of the individual scene model.
+
+### Scene Initialization
+
+For the scene rotation, scale, and initial position used in EyeNavGS, refer to [`scene_setting.csv`](https://github.com/symmru/EyeNavGS_Rutgers_Dataset/blob/main/scene_setting.csv) in the [Rutgers dataset repository](https://github.com/symmru/EyeNavGS_Rutgers_Dataset).
+
+These parameters configure the VR scene initialization; they are not model training hyperparameters.
+
+For example, the current initialization values for **truck** are:
+
+| Scene | Initial Position (X Y Z) | Quaternion (X Y Z W) | Scale |
+| --- | --- | --- | --- |
+| truck | `0 2.1 -4` | `-0.0896 0.0000 0.0000 0.9960` | `0.76` |
+
+> When replaying a recorded trace, use the same initialization settings used during recording to preserve alignment.
+
+**Desktop mode:**
+
+```bash
+SIBR_gaussianViewer_app_d.exe -m C:\User\SIBR\models\truck --rendering-mode 0
 ```
 
-Extract the file to your preferred path. To test with a Common initialization:
+**Headset mode with scene initialization:**
 
-| Scene Name | Initial Position (X Y Z) | Quaternion (X Y Z W)           | Scale |
-| ---------- | ------------------------ | ------------------------------ | ----- |
-| truck      | `-2 1.8 -4`              | `-0.0872 0.0000 0.0000 0.9962` | 0.8   |
-
-> These values apply to **Headset Mode only**. If replaying a trace recorded with specific settings, use identical `--initial-*` flags to avoid misaligned output.
-
-For detailed initialization Parameters, please refer to Table 1 in the paper 👁️NavGS or the [`scene_setting.csv`](https://github.com/symmru/EyeNavGS_Rutgers_Dataset/blob/main/scene_setting.csv "scene_setting.csv") in the [EyeNavGS_Rutgers_Dataset](https://github.com/symmru/EyeNavGS_Rutgers_Dataset) .
-
-- Example command for starting the SIBR viewer in desktop mode with the scene downloaded:
-  
-  ```bash
-  SIBR_gaussianViewer_app_d.exe -m C:\User\SIBR\models\truck--rendering-mode 0
-  ```
-
-- Example command for starting the SIBR viewer in Headset mode with the scene downloaded and initialization:
-  
-  ```bash
-  SIBR_gaussianViewer_app_d.exe -m D:\projects\sibr\scenes\models\truck --rendering-mode 2 --initial-position 0 2.1 -4 --initial-quaternion  -0.0896, 0.0000, 0.0000, 0.9960 --initial-scale 0.76
-  ```
+```bash
+SIBR_gaussianViewer_app_d.exe -m C:\User\SIBR\models\truck --rendering-mode 2 --initial-position 0 2.1 -4 --initial-quaternion -0.0896 0.0000 0.0000 0.9960 --initial-scale 0.76
+```
 
 ---
 
